@@ -36,9 +36,9 @@
           React.DOM.table { className: 'table' }, null, @state.table.map @renderLines
 
         renderLines: (lines) ->
-          React.DOM.tr {}, null, lines.map @discoLine
+          React.DOM.tr {}, null, lines.map @discoColumn
 
-        discoLine: (color) ->
+        discoColumn: (color) ->
           React.DOM.td { 'style': {"background": color} }
 
       React.renderComponent table(lines: 10, rows: 10), document.body
