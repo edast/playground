@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Disco coffee table</title>
+		<script src="http://fb.me/react-0.11.1.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/coffee-script/1.7.1/coffee-script.min.js"></script>
+		<style type="text/css">
+		    html,body,table {
+		      margin: 0;
+		      padding: 0;
+		      width: 100%;
+		      height: 100%;
+		    }
+		</style>
+	</head>
+	<body>
+    <div id="container"></div>
+		<script type="text/coffeescript">
+      table = React.createClass
+        getInitialState: ->
+          table: @getColorTable @props.lines, @props.rows
+
+        tick: ->
+          @setState table: @getColorTable @props.lines, @props.rows
+                  
+        componentDidMount: ->
+          @interval = setInterval @tick, 1000
+          
+        getColorTable: (lines, rows) ->
+          randomColor = -> "#"+((1<<24)*Math.random()|0).toString(16)
+          for l in [0...lines]
+            for r in [0...rows]
+              randomColor()
+
+        render: ->
+          React.DOM.table { className: 'table' }, null, @state.table.map @renderLines
+          
+        renderLines: (lines) ->
+          React.DOM.tr {}, null, lines.map @discoLine
+            
+        discoLine: (color) ->
+          React.DOM.td { 'style': {"background": color} }
+
+      React.renderComponent table(lines: 10, rows: 10), document.body		
+		</script>
+	</body>
+</html>
