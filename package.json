@@ -1,0 +1,31 @@
+{
+  "name": "playground",
+  "version": "0.0.0",
+  "description": "sample sockets and more",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Darius Staisiunas <darius.staisiunas@gmail.com>, Tomas Danilevicius <tomas.danilevicius@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+     "socket.io": "1.1.0",
+     "socket.io-client": "1.1.0",
+     "underscore": "^1.7.0"
+   },
+  "devDependencies": {
+    "coffee-script": "^1.7.1",
+    "coffeeify": "^0.7.0",
+    "del": "^0.1.1",
+    "envify": "^3.0.0",
+    "gulp": "^3.8.6",
+    "gulp-coffee": "^2.1.1",
+    "gulp-coffeelint": "^0.3.3",
+    "gulp-jasmine": "^0.3.0",
+    "minifyify": "~4.0.4",
+    "react": "^0.11.1",
+    "run-sequence": "^0.3.6",
+    "vinyl-source-stream": "^0.1.1",
+    "browserify": "~5.9.3"
+  }
+}

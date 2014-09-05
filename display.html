@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Disco coffee table</title>
+    <script src="https://cdn.socket.io/socket.io-1.1.0.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/coffee-script/1.7.1/coffee-script.min.js"></script>
+    <style type="text/css">
+        html,body,table {
+          margin: 0;
+          padding: 0;
+          width: 100%;
+          height: 100%;
+        }
+        #container {
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      
+    </div>
+    <script type="text/coffeescript">
+#io = require 'socket.io-client'
+
+class DisplayClient
+  socket: null
+  images: []
+  
+  constructor: (@opts = {}) ->
+    #console.log 'construct', io
+    @opts.host or= '192.168.0.113'
+    @opts.port or= 3000
+    
+  init: =>
+    @socket = new io "http://#{@opts.host}:#{@opts.port}"
+    @socket.on 'connect', =>
+      console.log 'connected!!!'
+      @socket.on 'event', @onEvent
+      @socket.on 'images', @onImages
+      @socket.on 'showImage', @onShowImage
+      @socket.on 'disconnect', @onDisconnect
+  
+  onShowImage: (num) =>
+    console.log "show image #{@images[num]}"
+    if document?
+      img = document.getElementById "container"
+      img.style.backgroundImage = "url('#{@images[num]}')"
+    
+  onImages: (images) =>
+    @images = images
+    console.log 'my images', toString.call(images)
+
+  onEvent: (msg) ->
+    console.log msg
+  
+  onDisconnect: =>
+    console.log 'got disconnected :('
+    @socket.close()
+    
+client = new DisplayClient
+client.init()
+    </script>
+  </body>
+</html>
