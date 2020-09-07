@@ -23,7 +23,7 @@
     "gulp-coffeelint": "^0.3.3",
     "gulp-jasmine": "^0.3.0",
     "minifyify": "~4.0.4",
-    "react": "^0.11.1",
+    "react": "^16.13.1",
     "run-sequence": "^0.3.6",
     "vinyl-source-stream": "^0.1.1",
     "browserify": "~5.9.3"
